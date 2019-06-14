@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">NavigationDrawerSample</string>
+
+    <string name="menu_inbox_title">Inbox</string>
+    <string name="menu_outbox_title">Outbox</string>
+    <string name="menu_trash_title">Trash</string>
+    <string name="menu_spam_title">Spam</string>
+    <string name="menu_forum_title">Forums</string>
+    <string name="menu_update_title">Updates</string>
+    <string name="menu_promo_title">Promos</string>
+    <string name="menu_purchase_title">Purchases</string>
+    <string name="menu_social_title">Social</string>
+</resources>
