@@ -1,10 +1,11 @@
-# Navigation Drawer
+﻿# Navigation Drawer
 
 ## Overview
 ### Notification Drawer là gì?
 - Navigation Drawer là một menu kéo, cung cấp quyền truy cập vào các điểm đến trong ứng dụng.
 - Click icon hoặc có thể vuốt từ trái sang để hiển thị. Và khi không sử dụng nó sẽ ẩn đi.
 - Navigation Drawer có thể hiện thị vĩnh viễn trên màn hình hoặc được điều khiển bằng icon menu navigation.
+
 ### Khi nào nên sử dụng Navigation Drawer
 - App có từ 5 tab trở lên.
 - App có 2 hoặc nhiều phân cấp điều hướng
@@ -54,34 +55,6 @@
 - 7: Subtitle
 - 8: Scrim (modal only)
 
-#### Header (optional)
-- Là một không gian linh hoạt có thể sử dụng để thể hiện thương hiệu (tiêu đề úng dụng, logo,...), chuyển đổi account và hơn thế nữa.
-
-<img src="images/header.png"/>
-
-#### Destinations
-- Destinations trong navigation drawer có dạng các mục danh sách hành động. Mỗi destination mô tả đích đến của nó bằng text label và icon (optional)
-- Destination cùng text label/ text lable + icon: Text labels nên rõ ràng và ngắn gọn.
-
-<img src="images/destination_labels.png"/>
-
-<img src="images/destination_labels.png"/>
-
-- Chú ý:
-	+ Icon nên sử dụng cho tất cả destinations hoặc không sử dụng
-	+ Destinations thứ cấp có thể được biểu thị cùng một icon.
-
-	<img src="images/destination_secondary.png"/>
-
-#### Dividers (optional)
-- Có thể sử dụng để phân tách groups destination
-
-<img src="images/dividers_destination.png"/>
-
-#### Scrim (modal và bottom only)
-- Sử dung Scrim để chặn users tương tác với phần còn lại của app.
-- Được đặt ngay bên dưới drawer sheet và có thể bấm để loại bỏ drawer.
-
 ## Modal drawer
 - Modal drawer chặn tương tác với phần còn lại của app bằng scrim, không ảnh hưởng đến bố cục giao diện.
 - Sử dụng trên mobile, và có thể thay thế được cho standard drawer trên tablet và desktop.
@@ -114,13 +87,88 @@
 
 ## Implementation
 
-### Triển khai DrawerLayout
-- Bên trong DrawerLayout, thêm layout cho main UI và các view khác chứa nội dung của Navigation Drawer.
+### Step 1: Triển khai DrawerLayout làm root view
+- activity_main: Triển khai thẻ DrawerLayout, thêm layout cho main UI và các view khác chứa nội dung của Navigation Drawer.
 
-## Tham kháo
+<img src="images/activity_main.png"/>
+	
+	+ app_bar_main: Nội dung bố cục của app.
+	+ nav_header_main (optional)
+	+ activity_main_drawer: menu hiển thị trong NavigationView
+
+### Step 2: Viết code - MainActivity
+- Method onCreate: Để hiển thị icon drawer ta sử dụng ActionBarDrawerToggle
+
+	<img src="images/onCreate.png"/>
+
+- Lắng nghe click vào menu:
+
+	<img src="images/onNavigationItemSelected.png"/>
+
+- Close navigation drawer khi nhấn BackPress:
+
+	<img src="images/onBackPressed.png"/>
+
+### Kết quả
+
+## Custom Navigation Drawer
+### Custom List Item: Ta có thể custom lại giao diện hiển thị của NavigationView, chẳng hạn như thêm 1 label thay vì chỉ có icon và label.
+- Step 1:
+	+ Ta custom lại một chút NavigationView, sử dụng RecyclerView.
+
+	<img src="images/navigation_view_custom.png"/>
+
+	+ item_destination
+
+	<img src="images/item_destination.png"/>
+
+	+ NavigationAdapter:
+
+	<img src="images/navigation_adapter.png"/>
+
+- Step 2: Viết code - MainActivityCustom
+	+ Tạo data cho NavigationView
+
+	<img src="images/data_custom_navigation.png"/>
+
+	+ Hiển thị NavigationView
+
+	<img src="images/display_navigation_view_custom.png"/>
+	
+	+ Xử lý sự kiện
+	
+	<img src="images/handle_custom.png"/>
+
+- Kết quả:
+
+### Move content to side in Drawer Layout
+- Thực hiện di chuyển nội dung sang một bên, như ví dụ sau:
+
+	+ Làm trong suốt Scrim
+	+ Sử dụng method onDrawerSlide trong ActionBarDrawerToggle để di chuyển nội dung sang bên.
+	+ Có thể scale nội dung nhỏ lại
+	+ Đôi khi drawer có shadow, có thể loại bỏ nó.
+
+	<img src="images/move_content.png"/>
+
+- Kết quả: 
+
+## Navigation Drawer với Navigation Component
+- Trước hết bạn cần phải biết về Navigation Component: https://developer.android.com/guide/navigation
+- Tạo nav_graph.xml
+- Tạo fragment chứa các destination của Navigation Component.
+
+	<img src="images/fragment.png"/>
+
+- Kết nối DrawerLayout với Navigation Graph:
+
+	<img src="images/drawer_with_navigation.png"/>
+
+- Chú ý: id của fragment trong navigation graph phải trùng với id của menu navigation.
+
+## Tham khảo
 - https://material.io/design/components/navigation-drawer.html#implementation
 - https://material.io/develop/android/components/navigation-view/
 - https://developer.android.com/reference/android/support/v4/widget/DrawerLayout.html
-- https://developer.android.com/guide/navigation/navigation-ui#add_a_navigation_drawer
 - https://medium.com/quick-code/android-navigation-drawer-e80f7fc2594f
-
+- http://thetechnocafe.com/slide-content-to-side-in-drawer-layout-android/
