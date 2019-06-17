@@ -4,7 +4,6 @@
 ### Notification Drawer là gì?
 - Navigation Drawer là một menu kéo, cung cấp quyền truy cập vào các điểm đến trong ứng dụng.
 - Click icon hoặc có thể vuốt từ trái sang để hiển thị. Và khi không sử dụng nó sẽ ẩn đi.
-- Navigation Drawer có thể hiện thị vĩnh viễn trên màn hình hoặc được điều khiển bằng icon menu navigation.
 
 ### Khi nào nên sử dụng Navigation Drawer
 - App có từ 5 tab trở lên.
@@ -140,6 +139,7 @@
 	<img src="images/handle_custom.png"/>
 
 - Kết quả:
+<img src="images/result1.png" height = "500" width = "250"/>
 
 ### Move content to side in Drawer Layout
 - Thực hiện di chuyển nội dung sang một bên, như ví dụ sau:
@@ -152,6 +152,7 @@
 	<img src="images/move_content.png"/>
 
 - Kết quả: 
+<img src="images/result2.png" height = "500" width = "250"/>
 
 ## Navigation Drawer với Navigation Component
 - Trước hết bạn cần phải biết về Navigation Component: https://developer.android.com/guide/navigation
@@ -172,3 +173,4 @@
 - https://developer.android.com/reference/android/support/v4/widget/DrawerLayout.html
 - https://medium.com/quick-code/android-navigation-drawer-e80f7fc2594f
 - http://thetechnocafe.com/slide-content-to-side-in-drawer-layout-android/
+- https://github.com/umangburman/Navigation-Drawer-With-Navigation-Component

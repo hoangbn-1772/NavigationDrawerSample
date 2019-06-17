@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.animation.TranslateAnimation
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -47,11 +48,12 @@ class MainActivityCustom : AppCompatActivity(), NavigationView.OnNavigationItemS
             override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
                 super.onDrawerSlide(drawerView, slideOffset)
                 val scaleFactor = 6f
-                /*move content*/
-                content.translationX = drawerView.width * slideOffset
+                /*move content - translate, rotation*/
+                content.rotationY = (drawerView.height * slideOffset).div(-60)
+                content.translationX = (drawerView.width * slideOffset) * 0.6f
                 /*Scale content*/
                 content.scaleX = 1 - slideOffset.div(scaleFactor)
-                content.scaleY = 1 - slideOffset.div(8f)
+                content.scaleY = 1 - slideOffset.div(scaleFactor)
             }
 
             override fun onDrawerClosed(drawerView: View) {

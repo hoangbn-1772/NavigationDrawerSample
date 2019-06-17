@@ -3,12 +3,12 @@ package com.example.navigationdrawersample.ui.activities
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
-import androidx.navigation.Navigation.findNavController
+import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.example.navigationdrawersample.R
 import com.google.android.material.navigation.NavigationView
-import kotlinx.android.synthetic.main.app_bar_main_navigation.toolbar
-import kotlinx.android.synthetic.main.navigation_activity_main.drawer_layout
+import kotlinx.android.synthetic.main.app_bar_main_navigation.*
+import kotlinx.android.synthetic.main.navigation_activity_main.*
 
 class MainActivityNavigation : AppCompatActivity() {
 
@@ -17,16 +17,19 @@ class MainActivityNavigation : AppCompatActivity() {
         setContentView(R.layout.activity_main_navigation)
         setSupportActionBar(toolbar)
         val navigationView = findViewById<NavigationView>(R.id.nav_view)
-        val navController = findNavController(this, R.id.nav_host_fragment)
-        /*Setup menu navigation drawer*/
+        val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+        /*show icon menu navigation drawer*/
         NavigationUI.setupActionBarWithNavController(this, navController, drawer_layout)
-        /*setup NavigationView with Navigation Component*/
+        /*setup NavigationView*/
         NavigationUI.setupWithNavController(navigationView, navController)
+
+        // Can use setNavigationItemSelectedListener for navigationView
+        // Use navController for transaction destination.
     }
 
     /*Handle click Navigation button*/
     override fun onSupportNavigateUp(): Boolean {
-        return NavigationUI.navigateUp(findNavController(this, R.id.nav_host_fragment), drawer_layout)
+        return NavigationUI.navigateUp(Navigation.findNavController(this, R.id.nav_host_fragment), drawer_layout)
     }
 
     override fun onBackPressed() {
